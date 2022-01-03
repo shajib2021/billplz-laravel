@@ -16,9 +16,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('New Billplz Form') }}</div>
+                    <div class="card-header">{{ __('New tyyy Form') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ url('submit') }}">
+                        <form method="POST" action="{{ route('payment.checkout') }}">
                             @csrf
                             <!-- <div class="form-group row">
                                 <label for="product_name" class="col-md-4 col-form-label text-md-right">{{ __('Product Name') }}</label>

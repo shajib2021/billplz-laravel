@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +13,10 @@
 |
 */
 
-Route::get('/', 'FormController@viewForm');
-Route::any('submit', 'FormController@submitForm');
+Route::get('/', function () {
+    return view('form');
+});
 
-Route::get('/redirect', 'FormController@billplzHandleRedirect');
+Route::any('/submit', [PaymentController::class, 'create'])->name('payment.checkout');
+Route::get('toyyibpay-status', 'ToyyibpayController@paymentstatus')->name( 'toyyibpay-status');
+Route::post('toyyibpay-callback', 'ToyyibpayController@callback')->name( 'toyyibpay-callback');
