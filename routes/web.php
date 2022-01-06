@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::any('/submit', [PaymentController::class, 'create'])->name('payment.checkout');
-Route::get('toyyibpay-status', 'ToyyibpayController@paymentstatus')->name( 'toyyibpay-status');
-Route::post('toyyibpay-callback', 'ToyyibpayController@callback')->name( 'toyyibpay-callback');
+Route::get('toyyibpay-status', [PaymentController::class, 'paymentstatus'])->name( 'toyyibpay-status');
+Route::post('toyyibpay-callback', [PaymentController::class, 'callback'])->name( 'toyyibpay-callback');

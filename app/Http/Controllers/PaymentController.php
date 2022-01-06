@@ -32,18 +32,17 @@ class PaymentController extends Controller
     'billDescription' => 'TEST On Sunday',
     'billPriceSetting' => 1,
     'billPayorInfo' => 1,
-    'billAmount'=> $request->product_price,
+    'billAmount'=> $request->product_price*100,
     'billReturnUrl'=> route('toyyibpay-status'),
-    'billCallbackUrl' => route('toyyibpay-callback'),
     'billExternalReferenceNo' => 'Bill-001',
     'billTo' => $request->customer_name,
     'billEmail' => $request->customer_email,
     'billPhone'=>'0194342411',
     'billSplitPayment' => 0,
     'billSplitPaymentArgs'=>'',
-    'billPaymentChannel' => 0,
+    'billPaymentChannel' => 2,
     'billContentEmail'=>'Thank you for purchasing our product!',
-    'billChargeToCustomer'=>2
+    'billChargeToCustomer'=>''
   );
 
        $url='https://dev.toyyibpay.com/index.php/api/createBill';
@@ -63,8 +62,12 @@ class PaymentController extends Controller
      public function paymentstatus()
     {
 
-        $response= request()->all(['status_id','billcode','order_id']);
+        $response= request()->status_id;
+
+        if(($response)==1)
         return $response;
+        else
+        echo "fail";
     }
 
     public function callback()
