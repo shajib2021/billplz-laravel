@@ -25,6 +25,15 @@ class PaymentController extends Controller
      */
     public function create(Request $request)
     {
+        $amount = 100;
+        $combined_order_id = rand(10000,99999);
+        $first_name = 'shajaj';
+        $phone = '01675088906';
+        $email = 'ssssss@sss.com';
+
+
+
+
         $option = array(
     'userSecretKey' => config('toyyibpay.key'),
     'categoryCode' => config('toyyibpay.category'),
@@ -32,12 +41,12 @@ class PaymentController extends Controller
     'billDescription' => 'TEST On Sunday',
     'billPriceSetting' => 1,
     'billPayorInfo' => 1,
-    'billAmount'=> $request->product_price*100,
+    'billAmount'=> $amount,
     'billReturnUrl'=> route('toyyibpay-status'),
-    'billExternalReferenceNo' => 'Bill-001',
-    'billTo' => $request->customer_name,
-    'billEmail' => $request->customer_email,
-    'billPhone'=>'0194342411',
+    'billExternalReferenceNo' => $combined_order_id,
+    'billTo' => $first_name,
+    'billEmail' =>  $email,
+    'billPhone'=> $phone,
     'billSplitPayment' => 0,
     'billSplitPaymentArgs'=>'',
     'billPaymentChannel' => 2,
